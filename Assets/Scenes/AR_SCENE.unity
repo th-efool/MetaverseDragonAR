@@ -224,9 +224,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1168394217632999874, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
+      propertyPath: m_ControlPath
+      value: <AndroidGamepad>/buttonSouth
+      objectReference: {fileID: 0}
     - target: {fileID: 2690047250593187846, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
       propertyPath: m_Name
       value: UIDragonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170958209077207891, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
+      propertyPath: m_ControlPath
+      value: <AndroidGamepad>/buttonNorth
       objectReference: {fileID: 0}
     - target: {fileID: 5068049811521824525, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
       propertyPath: m_Pivot.x
@@ -324,10 +332,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 8894411271113599663, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
+      propertyPath: m_ControlPath
+      value: <AndroidGamepad>/buttonWest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3895993870994822962, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1899736757}
   m_SourcePrefab: {fileID: 100100000, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
 --- !u!114 &947687019 stripped
 MonoBehaviour:
@@ -622,6 +637,78 @@ Transform:
   - {fileID: 2031814789}
   m_Father: {fileID: 1496599023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1899736752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3895993870994822962, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
+  m_PrefabInstance: {fileID: 947687018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1899736755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1958148676005699535, guid: 0fa0be306afb8f346a6b9621325a8250, type: 3}
+  m_PrefabInstance: {fileID: 947687018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899736752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1899736757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899736752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1899736755}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: c7503d42db7dde84199ea573bb29b661, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1909030963
 GameObject:
   m_ObjectHideFlags: 0

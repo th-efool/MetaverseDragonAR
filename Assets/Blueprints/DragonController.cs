@@ -13,11 +13,11 @@ public class DragonController : MonoBehaviour
     int TakeOffHash;
     bool InAir;
     Vector3 AntiGravitationalForce;
-    [SerializeField] float MAX_SPEED =10f;
+    [SerializeField] float MAX_SPEED = 10f;
     [SerializeField] float FLIGHT_SPEED_MULTIPLIYER = 8f;
     [SerializeField] float GROUND_ACCELERATION = 15f;
-    [SerializeField] float FLIGHT_ACCELERATION_MULTIPLIYER = 5f;    
-    [SerializeField] float ANTIGRAVITY_MULTIPLIER =1.05f;
+    [SerializeField] float FLIGHT_ACCELERATION_MULTIPLIYER = 5f;
+    [SerializeField] float ANTIGRAVITY_MULTIPLIER = 1.05f;
 
 
 
@@ -29,7 +29,7 @@ public class DragonController : MonoBehaviour
         DirectionHash = Animator.StringToHash("Direction");
         TakeOffHash = Animator.StringToHash("TakeOff");
         IADragon = new IADragon();
-        AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y),0);
+        AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0);
 
 
     }
@@ -38,9 +38,11 @@ public class DragonController : MonoBehaviour
         PureHorizontalVelocity = rb.linearVelocity;
         PureHorizontalVelocity.y = 0;
         Vector3 MovementDirection = new(joystick.Horizontal, 0, joystick.Vertical);
-        if (PureHorizontalVelocity.magnitude < MAX_SPEED) {rb.AddForce(MovementDirection * GROUND_ACCELERATION, ForceMode.Acceleration); }
-        if (joystick.Vertical >0.2 || joystick.Horizontal > 0.2 || (joystick.Vertical < -0.2) || joystick.Horizontal < -0.2) { 
-        transform.rotation  = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(MovementDirection), 0.05f );}
+        if (PureHorizontalVelocity.magnitude < MAX_SPEED) { rb.AddForce(MovementDirection * GROUND_ACCELERATION, ForceMode.Acceleration); }
+        if (joystick.Vertical > 0.2 || joystick.Horizontal > 0.2 || (joystick.Vertical < -0.2) || joystick.Horizontal < -0.2)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(MovementDirection), 0.05f);
+        }
         if (InAir) { StayAfloat(); }
         animator.SetFloat(DirectionHash, (PureHorizontalVelocity.magnitude) / MAX_SPEED);
 
@@ -55,11 +57,14 @@ public class DragonController : MonoBehaviour
 
     }
 
-    void TakeFlight(InputAction.CallbackContext callbackContext){
-    if (InAir) {ExitFlight();}
-    else { InAir = true; animator.SetBool(TakeOffHash, true); 
-        MAX_SPEED = MAX_SPEED * FLIGHT_SPEED_MULTIPLIYER; 
-        GROUND_ACCELERATION = GROUND_ACCELERATION * FLIGHT_ACCELERATION_MULTIPLIYER;
+    void TakeFlight(InputAction.CallbackContext callbackContext)
+    {
+        if (InAir) { ExitFlight(); }
+        else
+        {
+            InAir = true; animator.SetBool(TakeOffHash, true);
+            MAX_SPEED = MAX_SPEED * FLIGHT_SPEED_MULTIPLIYER;
+            GROUND_ACCELERATION = GROUND_ACCELERATION * FLIGHT_ACCELERATION_MULTIPLIYER;
             rb.linearDamping = 1.0f;
         }
     }
@@ -72,23 +77,24 @@ public class DragonController : MonoBehaviour
         rb.linearDamping = 0;
 
     }
-    void StayAfloat() { rb.AddForce(AntiGravitationalForce,ForceMode.Acceleration); }
+    void StayAfloat() { rb.AddForce(AntiGravitationalForce, ForceMode.Acceleration); }
 
-    void AltitudeChange(InputAction.CallbackContext ctx) {
+    void AltitudeChange(InputAction.CallbackContext ctx)
+    {
         float upDownValue = ctx.ReadValue<float>();
         if (ctx.canceled) { AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0); Debug.Log("BOOOOOO"); }
-        else if (upDownValue >0) 
-            {
-                AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
-                Debug.Log("BRO IS GOING UP");
-            }
+        else if (upDownValue > 0)
+        {
+            AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
+            Debug.Log("BRO IS GOING UP");
+        }
         else if (upDownValue < 0)
-            {
-                AntiGravitationalForce = new Vector3(0, (float)(Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
-                Debug.Log("DOWN IS THE WAY");
+        {
+            AntiGravitationalForce = new Vector3(0, (float)(Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
+            Debug.Log("DOWN IS THE WAY");
 
-            }
         }
     }
+}
 
 
