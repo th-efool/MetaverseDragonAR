@@ -33,22 +33,26 @@ public class DragonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        joystick = Object.FindFirstObjectByType<Joystick>();
-        UpArrow = GameObject.FindWithTag("UpArrow");
-        DownArrow = GameObject.FindWithTag("DownArrow");
-        TextObject = GameObject.FindWithTag("FlyText");
-        Text=TextObject.GetComponent<TMP_Text>();   
         DirectionHash = Animator.StringToHash("Direction");
         TakeOffHash = Animator.StringToHash("TakeOff");
         IADragon = new IADragon();
         AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0);
-        UpArrow.gameObject.SetActive(false);
-        DownArrow.gameObject.SetActive(false);
        
 
 
+    }
+
+    private void Start()
+    {
+        GameObject joystickGameObject = GameObject.FindWithTag("Joystick");
+        joystick = joystickGameObject.GetComponent<Joystick>();
+        UpArrow = GameObject.FindWithTag("UpArrow");
+        DownArrow = GameObject.FindWithTag("DownArrow");
+        TextObject = GameObject.FindWithTag("FlyText");
+        Text = TextObject.GetComponent<TMP_Text>();
 
     }
+
     private void FixedUpdate()
     {
         PureHorizontalVelocity = rb.linearVelocity;

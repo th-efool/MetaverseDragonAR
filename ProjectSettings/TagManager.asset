@@ -9,6 +9,9 @@ TagManager:
   - DownArrow
   - FlyText
   - Canvas
+  - InstantiateButton
+  - AlignButton
+  - FlyLandButton
   layers:
   - Default
   - TransparentFX

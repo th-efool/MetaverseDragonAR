@@ -4,26 +4,54 @@ using UnityEngine.XR.ARFoundation;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System;
 
 public class ARPlacementManager : MonoBehaviour
 {
     [Header("Ray Casting")]
+    [SerializeField] public Camera AR_Camera;
     ARRaycastManager m_RaycastManager;
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
-    [SerializeField] public Camera AR_Camera;
     Vector3 centerOfScreen;
     Ray RayToCenter;
     IAARInteraction IAARInteraction;
 
     [Header("Dragon Placement")]
-    bool DragonGotPlaced=false;
-    [SerializeField] GameObject Dragon;
+    [SerializeField] private GameObject[] dragonPrefabs; // Array to hold dragon prefabs
+    bool DragonAligned =false;
+    bool DragonInstantiated = false;
+    GameObject Dragon;
+    GameObject InstantiateButton;
+    GameObject AlignButton;
+    GameObject Joystick;
+    GameObject FlyButton;
+    GameObject UpArrow;
+    GameObject DownArrow;
+
+    [Header("Test Variables Shit")]
+    [SerializeField] GameObject SpawnTransform;
 
     private void Awake()
     {
         m_RaycastManager = GetComponent<ARRaycastManager>();
+        InstantiateButton = GameObject.FindWithTag("InstantiateButton");
+        AlignButton = GameObject.FindWithTag("AlignButton");
+        AlignButton.SetActive(false);
+        Joystick = GameObject.FindWithTag("Joystick");
+        FlyButton = GameObject.FindWithTag("FlyLandButton");
+        UpArrow = GameObject.FindWithTag("UpArrow");
+        DownArrow = GameObject.FindWithTag("DownArrow");
+        Joystick.SetActive(false);
+        FlyButton.SetActive(true);
         IAARInteraction = new IAARInteraction();
-        IAARInteraction.ARPlacement.PlaceDragon.started += ctx => { DragonGotPlaced = true; };
+       IAARInteraction.ARPlacement.PlaceDragon.started += ctx => InstantiateDragon(ctx,0);
+        IAARInteraction.ARPlacement.AlignmentDone.started += FinalizeAlignment;
+        IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => DebugSpawnAlign(ctx, 0);
+        UpArrow.gameObject.SetActive(false);
+        DownArrow.gameObject.SetActive(false);
+        DebugSpawnAlign(0);
+
+
     }
 
 
@@ -37,22 +65,70 @@ public class ARPlacementManager : MonoBehaviour
     void Update()
     {
         RayToCenter = AR_Camera.ScreenPointToRay(centerOfScreen);
-        if (!DragonGotPlaced) { 
+         if (!DragonAligned && DragonInstantiated) { 
             KeepDragonCenter();
-        }
+        } 
 
 
     }
-
-    void KeepDragonCenter()
-    {
-        if (m_RaycastManager.Raycast(RayToCenter, m_Hits, TrackableType.PlaneWithinPolygon))
+    
+        void KeepDragonCenter()
         {
-            Pose hitPose = m_Hits[0].pose;
-            Dragon.transform.position = hitPose.position;   
+            if (m_RaycastManager.Raycast(RayToCenter, m_Hits, TrackableType.PlaneWithinPolygon))
+            {
+                Pose hitPose = m_Hits[0].pose;
+                Dragon.transform.position = hitPose.position;   
+
+            }
 
         }
 
+
+        void InstantiateDragon(InputAction.CallbackContext ctx,int index)
+        {
+                if (m_RaycastManager.Raycast(RayToCenter, m_Hits, TrackableType.PlaneWithinPolygon))
+                {
+                    Pose hitPose = m_Hits[0].pose;
+                    Dragon = Instantiate(dragonPrefabs[index], hitPose.position, Quaternion.identity);
+                    DragonInstantiated = true;
+                    AlignButton.SetActive(true);
+                    InstantiateButton.SetActive(false);
+
+                }
+
+        }
+  
+    void FinalizeAlignment(InputAction.CallbackContext ctx)
+    {
+        DragonAligned = true;
+        AlignButton.SetActive(false);
+        Joystick.SetActive(true);
+        FlyButton.SetActive(true);
+
+    }
+
+    void DebugSpawnAlign(InputAction.CallbackContext ctx, int index)
+    {
+        Debug.Log("I was called from ARPlacementManger - DebugSpawnAligh");
+        Dragon = Instantiate(dragonPrefabs[index], SpawnTransform.transform.position, Quaternion.identity);
+        DragonInstantiated = true;
+        DragonAligned = true;
+        InstantiateButton.SetActive(false);
+        AlignButton.SetActive(false);
+        Joystick.SetActive(true);
+        FlyButton.SetActive(true);
+    }
+
+    void DebugSpawnAlign(int index)
+    {
+        Debug.Log("I was called from ARPlacementManger - DebugSpawnAligh");
+        Dragon = Instantiate(dragonPrefabs[index], SpawnTransform.transform.position, Quaternion.identity);
+        DragonInstantiated = true;
+        DragonAligned = true;
+        InstantiateButton.SetActive(false);
+        AlignButton.SetActive(false);
+        Joystick.SetActive(true);
+        FlyButton.SetActive(true);
     }
 }
 

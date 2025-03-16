@@ -99,6 +99,24 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AlignmentDone"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c1935e0-512e-43bc-9c88-d1107d75eaeb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AutoSpawnAlign"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ae10110-1335-438e-aebe-4d1550f53b08"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -123,6 +141,50 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
                     ""action"": ""PlaceDragon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""7bd23b5e-5b84-4d93-ac0f-3eca11d4b199"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AlignmentDone"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ecc419b1-a6e6-4254-9418-0deace0aa248"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AlignmentDone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d89729c9-3918-4c72-9f84-19f296632483"",
+                    ""path"": ""<Gamepad>/{Back}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutoSpawnAlign"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab45ce5a-a0d4-4438-9bc8-6136c35a5d08"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutoSpawnAlign"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -132,6 +194,8 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
         // ARPlacement
         m_ARPlacement = asset.FindActionMap("ARPlacement", throwIfNotFound: true);
         m_ARPlacement_PlaceDragon = m_ARPlacement.FindAction("PlaceDragon", throwIfNotFound: true);
+        m_ARPlacement_AlignmentDone = m_ARPlacement.FindAction("AlignmentDone", throwIfNotFound: true);
+        m_ARPlacement_AutoSpawnAlign = m_ARPlacement.FindAction("AutoSpawnAlign", throwIfNotFound: true);
     }
 
     ~@IAARInteraction()
@@ -213,6 +277,8 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_ARPlacement;
     private List<IARPlacementActions> m_ARPlacementActionsCallbackInterfaces = new List<IARPlacementActions>();
     private readonly InputAction m_ARPlacement_PlaceDragon;
+    private readonly InputAction m_ARPlacement_AlignmentDone;
+    private readonly InputAction m_ARPlacement_AutoSpawnAlign;
     /// <summary>
     /// Provides access to input actions defined in input action map "ARPlacement".
     /// </summary>
@@ -228,6 +294,14 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ARPlacement/PlaceDragon".
         /// </summary>
         public InputAction @PlaceDragon => m_Wrapper.m_ARPlacement_PlaceDragon;
+        /// <summary>
+        /// Provides access to the underlying input action "ARPlacement/AlignmentDone".
+        /// </summary>
+        public InputAction @AlignmentDone => m_Wrapper.m_ARPlacement_AlignmentDone;
+        /// <summary>
+        /// Provides access to the underlying input action "ARPlacement/AutoSpawnAlign".
+        /// </summary>
+        public InputAction @AutoSpawnAlign => m_Wrapper.m_ARPlacement_AutoSpawnAlign;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -257,6 +331,12 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
             @PlaceDragon.started += instance.OnPlaceDragon;
             @PlaceDragon.performed += instance.OnPlaceDragon;
             @PlaceDragon.canceled += instance.OnPlaceDragon;
+            @AlignmentDone.started += instance.OnAlignmentDone;
+            @AlignmentDone.performed += instance.OnAlignmentDone;
+            @AlignmentDone.canceled += instance.OnAlignmentDone;
+            @AutoSpawnAlign.started += instance.OnAutoSpawnAlign;
+            @AutoSpawnAlign.performed += instance.OnAutoSpawnAlign;
+            @AutoSpawnAlign.canceled += instance.OnAutoSpawnAlign;
         }
 
         /// <summary>
@@ -271,6 +351,12 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
             @PlaceDragon.started -= instance.OnPlaceDragon;
             @PlaceDragon.performed -= instance.OnPlaceDragon;
             @PlaceDragon.canceled -= instance.OnPlaceDragon;
+            @AlignmentDone.started -= instance.OnAlignmentDone;
+            @AlignmentDone.performed -= instance.OnAlignmentDone;
+            @AlignmentDone.canceled -= instance.OnAlignmentDone;
+            @AutoSpawnAlign.started -= instance.OnAutoSpawnAlign;
+            @AutoSpawnAlign.performed -= instance.OnAutoSpawnAlign;
+            @AutoSpawnAlign.canceled -= instance.OnAutoSpawnAlign;
         }
 
         /// <summary>
@@ -318,5 +404,19 @@ public partial class @IAARInteraction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPlaceDragon(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AlignmentDone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAlignmentDone(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AutoSpawnAlign" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAutoSpawnAlign(InputAction.CallbackContext context);
     }
 }
