@@ -2,7 +2,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Composites;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class DragonController : MonoBehaviour
 {
