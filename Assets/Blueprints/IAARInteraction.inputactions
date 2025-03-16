@@ -1,0 +1,45 @@
+{
+    "name": "IAARInteraction",
+    "maps": [
+        {
+            "name": "ARPlacement",
+            "id": "0aa4714b-b8a0-4996-83d6-5623dc0624e2",
+            "actions": [
+                {
+                    "name": "PlaceDragon",
+                    "type": "Button",
+                    "id": "ccde4910-32cd-428c-a7a0-dd1cef5b7197",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "86118984-363f-4758-8829-62874885d34d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceDragon",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "4159aa57-00c7-4eda-9176-6ce893ce970f",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceDragon",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

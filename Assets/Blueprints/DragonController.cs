@@ -18,8 +18,8 @@ public class DragonController : MonoBehaviour
     Vector3 AntiGravitationalForce;
     GameObject UpArrow;
     GameObject DownArrow;
-    [SerializeField] TMP_Text Text;
-    [SerializeField] GameObject TextObject;
+    TMP_Text Text;
+    GameObject TextObject;
     [SerializeField] float MAX_SPEED = 10f;
     [SerializeField] float FLIGHT_SPEED_MULTIPLIYER = 8f;
     [SerializeField] float GROUND_ACCELERATION = 15f;
@@ -113,7 +113,7 @@ public class DragonController : MonoBehaviour
         }
         else if (upDownValue < 0)
         {
-            AntiGravitationalForce = new Vector3(0, (float)(Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
+            AntiGravitationalForce = new Vector3(0, (float)((-Physics.gravity.y)+((Physics.gravity.y) * ANTIGRAVITY_MULTIPLIER/1.1)), 0);
             Debug.Log("DOWN IS THE WAY");
 
         }
