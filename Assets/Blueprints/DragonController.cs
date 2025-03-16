@@ -2,17 +2,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Composites;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.UIElements;
 
 public class DragonController : MonoBehaviour
 {
     IADragon IADragon;
-    [SerializeField] Joystick joystick;
+    Joystick joystick;
     Rigidbody rb;
     Animator animator;
     int DirectionHash;
     int TakeOffHash;
     bool InAir;
     Vector3 AntiGravitationalForce;
+    GameObject UpArrow;
+    GameObject DownArrow;
+    [SerializeField] TMP_Text Text;
+    [SerializeField] GameObject TextObject;
     [SerializeField] float MAX_SPEED = 10f;
     [SerializeField] float FLIGHT_SPEED_MULTIPLIYER = 8f;
     [SerializeField] float GROUND_ACCELERATION = 15f;
@@ -26,10 +33,19 @@ public class DragonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        joystick = Object.FindFirstObjectByType<Joystick>();
+        UpArrow = GameObject.FindWithTag("UpArrow");
+        DownArrow = GameObject.FindWithTag("DownArrow");
+        TextObject = GameObject.FindWithTag("FlyText");
+        Text=TextObject.GetComponent<TMP_Text>();   
         DirectionHash = Animator.StringToHash("Direction");
         TakeOffHash = Animator.StringToHash("TakeOff");
         IADragon = new IADragon();
         AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0);
+        UpArrow.gameObject.SetActive(false);
+        DownArrow.gameObject.SetActive(false);
+       
+
 
 
     }
@@ -66,6 +82,9 @@ public class DragonController : MonoBehaviour
             MAX_SPEED = MAX_SPEED * FLIGHT_SPEED_MULTIPLIYER;
             GROUND_ACCELERATION = GROUND_ACCELERATION * FLIGHT_ACCELERATION_MULTIPLIYER;
             rb.linearDamping = 1.0f;
+            UpArrow.gameObject.SetActive(true);
+            DownArrow.gameObject.SetActive(true);
+            Text.text = "LAND";
         }
     }
 
@@ -75,6 +94,10 @@ public class DragonController : MonoBehaviour
         MAX_SPEED = MAX_SPEED / FLIGHT_SPEED_MULTIPLIYER;
         GROUND_ACCELERATION = GROUND_ACCELERATION / FLIGHT_ACCELERATION_MULTIPLIYER;
         rb.linearDamping = 0;
+        UpArrow.gameObject.SetActive(false);
+        DownArrow.gameObject.SetActive(false);
+        Text.text = "FLY";
+
 
     }
     void StayAfloat() { rb.AddForce(AntiGravitationalForce, ForceMode.Acceleration); }
