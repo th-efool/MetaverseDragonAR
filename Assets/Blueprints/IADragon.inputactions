@@ -24,10 +24,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AirMovement",
-                    "type": "Value",
-                    "id": "99bc2e98-c95a-4478-8f6a-ca9d1010d28b",
-                    "expectedControlType": "Vector2",
+                    "name": "FlyUpDown",
+                    "type": "Button",
+                    "id": "bd400060-5993-4d17-93b1-626664216a3b",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -44,61 +44,6 @@
                     "action": "Fly",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "9f5485cb-c201-451f-a3f3-7856e27391ae",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AirMovement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "4948afb5-3ccb-448f-a982-4c2bbbe99082",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AirMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "e40a3949-461b-4549-a741-5075ab32c6f5",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AirMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "3f8db31a-1356-4eb1-89b0-7db6fc355e04",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AirMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "5725efaf-7677-4f4e-a4b0-839d7e4b826c",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AirMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "2D Vector",
@@ -152,6 +97,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "GroundMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "acb26231-4b22-4905-b6c1-116a4e9cdc04",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlyUpDown",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "24fd23c6-9bc7-4ccd-8374-9d86d98929bf",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlyUpDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6142f565-7d44-4929-82f3-351e11461d29",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FlyUpDown",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

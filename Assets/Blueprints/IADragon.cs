@@ -110,10 +110,10 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AirMovement"",
-                    ""type"": ""Value"",
-                    ""id"": ""99bc2e98-c95a-4478-8f6a-ca9d1010d28b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""FlyUpDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd400060-5993-4d17-93b1-626664216a3b"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -130,61 +130,6 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
                     ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""9f5485cb-c201-451f-a3f3-7856e27391ae"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AirMovement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""4948afb5-3ccb-448f-a982-4c2bbbe99082"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AirMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""e40a3949-461b-4549-a741-5075ab32c6f5"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AirMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""3f8db31a-1356-4eb1-89b0-7db6fc355e04"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AirMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""5725efaf-7677-4f4e-a4b0-839d7e4b826c"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AirMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""2D Vector"",
@@ -240,6 +185,39 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
                     ""action"": ""GroundMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""acb26231-4b22-4905-b6c1-116a4e9cdc04"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlyUpDown"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""24fd23c6-9bc7-4ccd-8374-9d86d98929bf"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlyUpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6142f565-7d44-4929-82f3-351e11461d29"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlyUpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -250,7 +228,7 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
         m_Locomotion = asset.FindActionMap("Locomotion", throwIfNotFound: true);
         m_Locomotion_GroundMovement = m_Locomotion.FindAction("GroundMovement", throwIfNotFound: true);
         m_Locomotion_Fly = m_Locomotion.FindAction("Fly", throwIfNotFound: true);
-        m_Locomotion_AirMovement = m_Locomotion.FindAction("AirMovement", throwIfNotFound: true);
+        m_Locomotion_FlyUpDown = m_Locomotion.FindAction("FlyUpDown", throwIfNotFound: true);
     }
 
     ~@IADragon()
@@ -333,7 +311,7 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
     private List<ILocomotionActions> m_LocomotionActionsCallbackInterfaces = new List<ILocomotionActions>();
     private readonly InputAction m_Locomotion_GroundMovement;
     private readonly InputAction m_Locomotion_Fly;
-    private readonly InputAction m_Locomotion_AirMovement;
+    private readonly InputAction m_Locomotion_FlyUpDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "Locomotion".
     /// </summary>
@@ -354,9 +332,9 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Fly => m_Wrapper.m_Locomotion_Fly;
         /// <summary>
-        /// Provides access to the underlying input action "Locomotion/AirMovement".
+        /// Provides access to the underlying input action "Locomotion/FlyUpDown".
         /// </summary>
-        public InputAction @AirMovement => m_Wrapper.m_Locomotion_AirMovement;
+        public InputAction @FlyUpDown => m_Wrapper.m_Locomotion_FlyUpDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -389,9 +367,9 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
             @Fly.started += instance.OnFly;
             @Fly.performed += instance.OnFly;
             @Fly.canceled += instance.OnFly;
-            @AirMovement.started += instance.OnAirMovement;
-            @AirMovement.performed += instance.OnAirMovement;
-            @AirMovement.canceled += instance.OnAirMovement;
+            @FlyUpDown.started += instance.OnFlyUpDown;
+            @FlyUpDown.performed += instance.OnFlyUpDown;
+            @FlyUpDown.canceled += instance.OnFlyUpDown;
         }
 
         /// <summary>
@@ -409,9 +387,9 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
             @Fly.started -= instance.OnFly;
             @Fly.performed -= instance.OnFly;
             @Fly.canceled -= instance.OnFly;
-            @AirMovement.started -= instance.OnAirMovement;
-            @AirMovement.performed -= instance.OnAirMovement;
-            @AirMovement.canceled -= instance.OnAirMovement;
+            @FlyUpDown.started -= instance.OnFlyUpDown;
+            @FlyUpDown.performed -= instance.OnFlyUpDown;
+            @FlyUpDown.canceled -= instance.OnFlyUpDown;
         }
 
         /// <summary>
@@ -467,11 +445,11 @@ public partial class @IADragon: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFly(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "AirMovement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "FlyUpDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAirMovement(InputAction.CallbackContext context);
+        void OnFlyUpDown(InputAction.CallbackContext context);
     }
 }

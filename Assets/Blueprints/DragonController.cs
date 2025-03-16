@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Composites;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class DragonController : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] float FLIGHT_SPEED_MULTIPLIYER = 8f;
     [SerializeField] float GROUND_ACCELERATION = 15f;
     [SerializeField] float FLIGHT_ACCELERATION_MULTIPLIYER = 5f;    
-    [SerializeField] float ANTIGRAVITY_MULTIPLIER = 1.02f;
+    [SerializeField] float ANTIGRAVITY_MULTIPLIER =1.05f;
 
 
 
@@ -28,7 +30,7 @@ public class DragonController : MonoBehaviour
         DirectionHash = Animator.StringToHash("Direction");
         TakeOffHash = Animator.StringToHash("TakeOff");
         IADragon = new IADragon();
-        AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y* ANTIGRAVITY_MULTIPLIER),0);
+        AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y),0);
 
 
     }
@@ -49,6 +51,9 @@ public class DragonController : MonoBehaviour
     {
         IADragon.Enable();
         IADragon.Locomotion.Fly.started += TakeFlight;
+        IADragon.Locomotion.FlyUpDown.performed += AltitudeChange;
+        IADragon.Locomotion.FlyUpDown.canceled += AltitudeChange;
+
     }
 
     void TakeFlight(InputAction.CallbackContext callbackContext){
@@ -69,5 +74,22 @@ public class DragonController : MonoBehaviour
 
     }
     void StayAfloat() { rb.AddForce(AntiGravitationalForce,ForceMode.Acceleration); }
-} 
+
+    void AltitudeChange(InputAction.CallbackContext ctx) {
+        float upDownValue = ctx.ReadValue<float>();
+        if (ctx.canceled) { AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0); Debug.Log("BOOOOOO"); }
+        else if (upDownValue >0) 
+            {
+                AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
+                Debug.Log("BRO IS GOING UP");
+            }
+        else if (upDownValue < 0)
+            {
+                AntiGravitationalForce = new Vector3(0, (float)(Physics.gravity.y * ANTIGRAVITY_MULTIPLIER), 0);
+                Debug.Log("DOWN IS THE WAY");
+
+            }
+        }
+    }
+
 
