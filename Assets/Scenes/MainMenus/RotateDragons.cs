@@ -1,16 +1,35 @@
 using UnityEngine;
 using System.Collections;
 using System.Timers;
+using TMPro;
+using UnityEngine.UI;
 
 public class RotateDragons : MonoBehaviour
 {
+
     [SerializeField] float FullRotationPerSecond=0.8f;
-    int SelectionDragon=0;
+    [SerializeField] TMP_Text text;
+    [SerializeField] Button SelectButton;
+    [SerializeField] GameObject ColorV1;
+    [SerializeField] GameObject ColorV2;
+    [SerializeField] GameObject ColorV3;
+    [SerializeField] GameObject ColorV4;
+    int SelectionDragon =0;
     bool OngoingRotation=false;
     int NumberOfDragonTypes = System.Enum.GetValues(typeof(DragonType)).Length;
+
+    private void Awake()
+    {
+        SwitchColorPalette((DragonType)SelectionDragon);
+    }
     public void Rotate(float angle)
     {
-        if (!OngoingRotation) { StartCoroutine(SlerpItDown(angle));} 
+        if (!OngoingRotation)
+        {
+            StartCoroutine(SlerpItDown(angle));
+            if (SelectionDragon == (int)DragonType.Nightmare) {text.text = "LOCKED"; SelectButton.interactable = false; }
+            else {text.text = "SELECT"; SelectButton.interactable = true; }
+        }
 
     }
 
@@ -21,7 +40,6 @@ public class RotateDragons : MonoBehaviour
         {
             SelectionDragon=((SelectionDragon % NumberOfDragonTypes) + NumberOfDragonTypes) % NumberOfDragonTypes;
         }
-        Debug.Log(SelectionDragon);
 
         OngoingRotation = true;
         float alpha = 0;
@@ -36,8 +54,41 @@ public class RotateDragons : MonoBehaviour
         transform.rotation = finalRotation; //for precision
         OngoingRotation = false;
         PlayerData.Instance.SetDragonChoice((DragonType)SelectionDragon);
+        SwitchColorPalette((DragonType)SelectionDragon);
+
     }
 
+    private void SwitchColorPalette(DragonType SelectedDragonType)
+    {
+        switch (PlayerData.Instance.DragonChoice)
+        {
+            case DragonType.Usurper:
+                SetColorPalette(DragonType.Usurper);
+                break;
+            case DragonType.SoulEater:
+                SetColorPalette(DragonType.SoulEater);
+                break;
+            case DragonType.Nightmare:
+                SetColorPalette(DragonType.Nightmare);
+                break;
+            case DragonType.TerrorBringer:
+                SetColorPalette(DragonType.TerrorBringer);
+                break;
+
+        }
+
+         ;
+    }
+
+    private void SetColorPalette(DragonType dragontype)
+    {
+        DragonColor[] dragonColorPalette = PlayerData.Instance.dragonColors[dragontype];
+        ColorV1.GetComponent<Image>().color = PlayerData.Instance.colorMapping[dragonColorPalette[0]];
+        ColorV2.GetComponent<Image>().color = PlayerData.Instance.colorMapping[dragonColorPalette[1]];
+        ColorV3.GetComponent<Image>().color = PlayerData.Instance.colorMapping[dragonColorPalette[2]];
+        ColorV4.GetComponent<Image>().color = PlayerData.Instance.colorMapping[dragonColorPalette[3]];
+
+    }
 }
 
 /*  transform.rotation = Quaternion.Slerp(transform.rotation, transform.rotation * Quaternion.Euler(0, angle, 0), alpha);

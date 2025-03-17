@@ -4,7 +4,7 @@ public enum DragonColor
     Green,
     Purple,
     Red,
-    Gray,
+    Grey,
     Albino,
     DarkBlue
  }
