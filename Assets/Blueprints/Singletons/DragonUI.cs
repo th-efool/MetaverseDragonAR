@@ -12,6 +12,8 @@ public class DragonUI : Singleton<DragonUI>
     GameObject DownArrow; 
     GameObject TextObject; 
     TMP_Text Text;
+    GameObject CenterDot;
+    GameObject DebugAutoPlaceButton;
     public Joystick Joystick { get; private set; }
 
 
@@ -30,6 +32,9 @@ public class DragonUI : Singleton<DragonUI>
         AlignButton = GameObject.FindWithTag("AlignButton");
         FlyButton = GameObject.FindWithTag("FlyLandButton");
         DragonPlacementStage(0);
+        CenterDot= GameObject.FindWithTag("CenterDot");
+        DebugAutoPlaceButton = GameObject.FindWithTag("DebugAutoPlaceButton");
+
     }
 
 
@@ -53,6 +58,8 @@ public class DragonUI : Singleton<DragonUI>
         }
         if (stage == 2)
         {
+            CenterDot.SetActive(false);
+            DebugAutoPlaceButton.SetActive(false);
             AlignButton.SetActive(false);
             InstantiateButton.SetActive(false);
             JoystickGameObject.SetActive(true);
@@ -72,8 +79,8 @@ public class DragonUI : Singleton<DragonUI>
             Text.text = "LAND";
         } else
         {
-            UpArrow.gameObject.SetActive(true);
-            DownArrow.gameObject.SetActive(true);
+            UpArrow.gameObject.SetActive(false);
+            DownArrow.gameObject.SetActive(false);
             Text.text = "FLY";
         }
     }

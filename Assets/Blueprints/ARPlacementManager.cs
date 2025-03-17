@@ -31,6 +31,7 @@ public class ARPlacementManager : MonoBehaviour
         IAARInteraction = new IAARInteraction();
         IAARInteraction.ARPlacement.PlaceDragon.started += ctx => InstantiateDragon(ctx,0);
         IAARInteraction.ARPlacement.AlignmentDone.started += FinalizeAlignment;
+        IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => Debug.Log("Meow Meow YAYYY!!~");
         IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => DebugSpawnAlign(ctx, 0);
 
 
@@ -41,7 +42,6 @@ public class ARPlacementManager : MonoBehaviour
     void Start()
     {
         centerOfScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        DebugSpawnAlign(0);
 
     }
 
@@ -96,13 +96,10 @@ public class ARPlacementManager : MonoBehaviour
         DragonUI.Instance.DragonPlacementStage(2);
     }
 
-    void DebugSpawnAlign(int index)
+    private void OnEnable()
     {
-        Debug.Log("I was called from ARPlacementManger - DebugSpawnAligh");
-        Dragon = Instantiate(dragonPrefabs[index], SpawnTransform.transform.position, Quaternion.identity);
-        DragonInstantiated = true;
-        DragonAligned = true;
-        DragonUI.Instance.DragonPlacementStage(2);
+        IAARInteraction.Enable();
     }
+
 }
 
