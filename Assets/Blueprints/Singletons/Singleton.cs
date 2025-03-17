@@ -4,13 +4,23 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static object m_Lock = new object();
     private static T m_Instance;
+    private static bool m_ShuttingDown = false;
 
     [SerializeField] public bool dontDestroyOnLoad = true;  // Toggle for persistence
+    [SerializeField] public bool CanICreateItAgain = false;  // Toggle for persistence
+
 
     public static T Instance
     {
         get
         {
+            if (m_ShuttingDown)
+            {
+                Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
+                    "' already destroyed. Returning null.");
+                return null;
+            }
+
 
             lock (m_Lock)
             {
@@ -44,13 +54,16 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             Destroy(gameObject);  // Destroy duplicate instances
         }
     }
+    private void OnApplicationQuit()
+    {
+        if (!CanICreateItAgain) { m_ShuttingDown = true; }
+    }
 
     protected virtual void OnDestroy()
     {
-        if (m_Instance == this)
-        {
-            m_Instance = null;
-        }
+        if (CanICreateItAgain) { 
+            if (m_Instance == this){m_Instance = null;}
+        } else { m_ShuttingDown = true; }
     }
 
 
