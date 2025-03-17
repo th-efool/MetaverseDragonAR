@@ -7,8 +7,11 @@ public class PlayerData : Singleton<PlayerData>
 {
     public string PlayerName { get; set; }
     public DragonType DragonChoice { get; private set; }
-    public DragonColor DragonColorChoice { get; private set; }
-
+    public int DragonColorChoice { get; private set; }
+    Material[] Usurper;
+    Material[] SoulEater;
+    Material[] Nightmare;
+    Material[] TerrorBringer;
 
     public Dictionary<DragonType, DragonColor[]> dragonColors = new Dictionary<DragonType, DragonColor[]>
     {
@@ -41,9 +44,10 @@ public class PlayerData : Singleton<PlayerData>
         DragonChoice = Choice;
     }
 
-    public void SetDragonColorChoice(DragonColor Choice)
+    public void SetDragonColorChoice(int Choice)
     {
         DragonColorChoice = Choice;
+        Debug.Log("YO YO BABBY WHASAUPP " + Choice);
     }
 
 
@@ -54,5 +58,33 @@ public class PlayerData : Singleton<PlayerData>
 
     }
 
+    public Material SelectedDragonMaterial()
+    {
+        switch (DragonChoice)
+        {
+            case (DragonType.Usurper):
+                return Usurper[DragonColorChoice];
+                break;
+            case (DragonType.SoulEater):
+                return SoulEater[DragonColorChoice];
+                break;
+            case (DragonType.TerrorBringer):
+                return TerrorBringer[DragonColorChoice];
+                break;
+            case (DragonType.Nightmare):
+                return Nightmare[DragonColorChoice];
+                break;
+        }
+        return Usurper[DragonColorChoice];
+
+    }
+
+    public void SetMaterialReference(Material[] UsuperMaterial, Material[] SoulEaterMaterial, Material[] NightmareMaterial, Material[] TerrorbringerMaterial)
+    {
+        Usurper = UsuperMaterial;
+        SoulEater = SoulEaterMaterial;
+        Nightmare = NightmareMaterial;
+        TerrorBringer = TerrorbringerMaterial;  
+    }
  
 }
