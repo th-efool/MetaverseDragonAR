@@ -1,6 +1,7 @@
 public enum DragonType
 {
     Usurper,
-    TerrorBringer,
-    SoulEater
+    SoulEater,
+    Nightmare,
+    TerrorBringer
 }

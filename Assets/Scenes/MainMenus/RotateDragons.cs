@@ -5,7 +5,9 @@ using System.Timers;
 public class RotateDragons : MonoBehaviour
 {
     [SerializeField] float FullRotationPerSecond=0.8f;
+    int SelectionDragon=0;
     bool OngoingRotation=false;
+    int NumberOfDragonTypes = System.Enum.GetValues(typeof(DragonType)).Length;
     public void Rotate(float angle)
     {
         if (!OngoingRotation) { StartCoroutine(SlerpItDown(angle));} 
@@ -14,20 +16,26 @@ public class RotateDragons : MonoBehaviour
 
     IEnumerator SlerpItDown(float angle)
     {
+        if (angle > 0) { SelectionDragon++; }else { SelectionDragon--; }
+        if (SelectionDragon < 0 || SelectionDragon >= NumberOfDragonTypes)
+        {
+            SelectionDragon=((SelectionDragon % NumberOfDragonTypes) + NumberOfDragonTypes) % NumberOfDragonTypes;
+        }
+        Debug.Log(SelectionDragon);
+
         OngoingRotation = true;
         float alpha = 0;
-        Debug.Log("Inside enumerator" + alpha);
         Quaternion startRotation = transform.rotation;
         Quaternion finalRotation = transform.rotation * Quaternion.Euler(0, angle, 0);
         while (alpha < 1.0f)
         {
             transform.rotation = Quaternion.Slerp(startRotation, finalRotation, alpha);
             alpha += FullRotationPerSecond * Time.deltaTime;
-            Debug.Log("YO!! I'm WORKING HERE " + alpha);
             yield return null;
         }
         transform.rotation = finalRotation; //for precision
         OngoingRotation = false;
+        PlayerData.Instance.SetDragonChoice((DragonType)SelectionDragon);
     }
 
 }

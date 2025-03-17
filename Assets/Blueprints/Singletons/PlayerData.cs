@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerData : Singleton<DragonUI>
+public class PlayerData : Singleton<PlayerData>
 {
     public string PlayerName { get; set; }
     public DragonType DragonChoice { get; private set; }
@@ -10,6 +10,7 @@ public class PlayerData : Singleton<DragonUI>
     public void SetDragonChoice(DragonType Choice)
     {
         DragonChoice = Choice;
+        Debug.Log(DragonChoice.ToString());
     }
 
     public void SetDragonColorChoice(DragonColor Choice)
