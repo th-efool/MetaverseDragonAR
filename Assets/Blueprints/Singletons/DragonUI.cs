@@ -19,20 +19,9 @@ public class DragonUI : Singleton<DragonUI>
     {
         dontDestroyOnLoad = false; 
         base.Awake();
-    }
-
-    private void Start()
-    {
-        StartCoroutine(LateStart());
-    }
-
-    private IEnumerator LateStart()
-    {
-        yield return new WaitForSeconds(0.1f); // Wait for objects to be instantiated
-        Debug.Log("Initializing Dragon UI");
 
         JoystickGameObject = GameObject.FindWithTag("Joystick");
-        Joystick = JoystickGameObject?.GetComponent<Joystick>();  // Use null check to avoid errors
+        Joystick = JoystickGameObject.GetComponent<Joystick>();
         UpArrow = GameObject.FindWithTag("UpArrow");
         DownArrow = GameObject.FindWithTag("DownArrow");
         TextObject = GameObject.FindWithTag("FlyText");
@@ -62,7 +51,7 @@ public class DragonUI : Singleton<DragonUI>
             InstantiateButton.SetActive(false);
             JoystickGameObject.SetActive(false);
         }
-        if (stage == 2) 
+        if (stage == 2)
         {
             AlignButton.SetActive(false);
             InstantiateButton.SetActive(false);
@@ -71,6 +60,8 @@ public class DragonUI : Singleton<DragonUI>
 
         }
     }
+
+
 
     public void DragonFly(bool Fly)
     {

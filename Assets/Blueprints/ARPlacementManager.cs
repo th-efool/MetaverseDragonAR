@@ -40,7 +40,6 @@ public class ARPlacementManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DragonUI.Instance.DragonPlacementStage(0);
         centerOfScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         DebugSpawnAlign(0);
 
