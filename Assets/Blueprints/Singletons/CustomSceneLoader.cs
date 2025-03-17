@@ -5,15 +5,15 @@ using System.Threading;
 
 public class CustomSceneLoader : Singleton<CustomSceneLoader>
 {
-    public void LoadScene(LevelList Level)
+    public void LoadScene(LevelList SelectedLevel)
     {
         SceneManager.LoadSceneAsync("LoadingScene",LoadSceneMode.Single);
-        StartCoroutine(AsyncLoad(Level));
+        StartCoroutine(AsyncLoad(SelectedLevel));
     }
 
-    IEnumerator AsyncLoad(LevelList Level)
+    IEnumerator AsyncLoad(LevelList SelectedLevel)
     {
-        string SceneName = Level.ToString();
+        string SceneName = SelectedLevel.ToString();
         var AsyncLoadedScene = SceneManager.LoadSceneAsync(SceneName,LoadSceneMode.Single);
 
         AsyncLoadedScene.allowSceneActivation = false;

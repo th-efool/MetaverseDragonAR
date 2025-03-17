@@ -10,11 +10,7 @@ public class SelectionUITouchInput : MonoBehaviour
     [SerializeField] GameObject ColorV3;
     [SerializeField] GameObject ColorV4;
     [SerializeField] GameObject Select;
-    [SerializeField] GameObject DragonUsurper;
-    [SerializeField] GameObject DragonSoulEater;
-    [SerializeField] GameObject DragonNightmare;
-    [SerializeField] GameObject DragonTerrorBringer;
-
+    [SerializeField] GameObject[] DragonsRef;
     [SerializeField] Material[] Usurper;
     [SerializeField] Material[] SoulEater;
     [SerializeField] Material[] Nightmare;
@@ -29,10 +25,12 @@ public class SelectionUITouchInput : MonoBehaviour
     public void SetDragonColorChoice(int choice)
     {
         PlayerData.Instance.SetDragonColorChoice(choice);
+        DragonsRef[(int)PlayerData.Instance.DragonChoice].GetComponentInChildren<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
+
+        /*
         switch (PlayerData.Instance.DragonChoice)
         {
             case DragonType.Usurper:
-                DragonUsurper.GetComponent<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
                 break;
 
             case DragonType.SoulEater:
@@ -45,11 +43,11 @@ public class SelectionUITouchInput : MonoBehaviour
             case DragonType.TerrorBringer:
                 DragonTerrorBringer.GetComponent<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
                 break;
-
-        }
+        */
     }
+}
 
     // We'll implement the system of Implementing what color dragon is shown to have,
     // and setting dragon color value in player data through here
 
-}
+

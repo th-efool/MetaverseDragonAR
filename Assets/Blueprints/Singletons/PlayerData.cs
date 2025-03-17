@@ -64,16 +64,13 @@ public class PlayerData : Singleton<PlayerData>
         {
             case (DragonType.Usurper):
                 return Usurper[DragonColorChoice];
-                break;
             case (DragonType.SoulEater):
                 return SoulEater[DragonColorChoice];
-                break;
-            case (DragonType.TerrorBringer):
-                return TerrorBringer[DragonColorChoice];
-                break;
             case (DragonType.Nightmare):
                 return Nightmare[DragonColorChoice];
-                break;
+            case (DragonType.TerrorBringer):
+                return TerrorBringer[DragonColorChoice];
+
         }
         return Usurper[DragonColorChoice];
 

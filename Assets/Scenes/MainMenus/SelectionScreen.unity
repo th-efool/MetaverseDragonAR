@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &88813935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 163610, guid: 281a986484325de459dc1b3709335bc5, type: 3}
+  m_PrefabInstance: {fileID: 2069874945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &119961521
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 119961524}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879810088}
+        m_TargetAssemblyTypeName: MainMenuHandler, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &119961524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +835,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e274663c045f0243aba549b2aae28a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &868362908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 114264, guid: 8e302007cba46d94b970c6a0955b9628, type: 3}
+  m_PrefabInstance: {fileID: 934094932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &934094932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1007,6 +1029,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081561630}
   m_CullTransparentMesh: 1
+--- !u!1 &1108739619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 189770, guid: c644a2181ac22e740968a7ece97e8f36, type: 3}
+  m_PrefabInstance: {fileID: 2027970469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1257290602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480080, guid: 445a5c29e7f715947b713a753f242af0, type: 3}
@@ -1804,6 +1831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1879810086}
   - component: {fileID: 1879810087}
+  - component: {fileID: 1879810088}
   m_Layer: 0
   m_Name: UI_InputManager
   m_TagString: Untagged
@@ -1844,11 +1872,42 @@ MonoBehaviour:
   ColorV4: {fileID: 1081561630}
   Select: {fileID: 119961521}
   DragonUsurper: {fileID: 780749063}
+  DragonSoulEater: {fileID: 1108739619}
+  DragonNightmare: {fileID: 88813935}
+  DragonTerrorBringer: {fileID: 868362908}
   Usurper:
   - {fileID: 2100000, guid: b610c12dfb915564fa7d6ed9771555e3, type: 2}
   - {fileID: 2100000, guid: acd197acde96c544b8d8fd85cc2e8b20, type: 2}
   - {fileID: 2100000, guid: c6a1d1f1e0ac339489c17274f110669a, type: 2}
   - {fileID: 2100000, guid: 1131ac1e42ee4884ab91bd69310a2715, type: 2}
+  SoulEater:
+  - {fileID: 2100000, guid: 5fcde950c31077243850f23d14ba9a5a, type: 2}
+  - {fileID: 2100000, guid: 1b51484aceb3349479b6c084713a5517, type: 2}
+  - {fileID: 2100000, guid: 0526c5be35ba93547acf614ed1950a2f, type: 2}
+  - {fileID: 2100000, guid: 483bc84e9c06fb74a978565bf66ff42d, type: 2}
+  Nightmare:
+  - {fileID: 2100000, guid: 8000a685f5b509b45b455c9ffd1f347f, type: 2}
+  - {fileID: 2100000, guid: 81d2b67dc7484724095d4343217c4e31, type: 2}
+  - {fileID: 2100000, guid: 8a2d1f9276d746a42925272a2372ca11, type: 2}
+  - {fileID: 2100000, guid: ca5605f13d3937e40b508c59662c25fd, type: 2}
+  TerrorBringer:
+  - {fileID: 2100000, guid: dcc7344671ccf0044a1fb5038007860e, type: 2}
+  - {fileID: 2100000, guid: 63a8442de5af83f49902935ef0d8904e, type: 2}
+  - {fileID: 2100000, guid: 2cc3d51c3b46bec4a95b1cf2d2488afd, type: 2}
+  - {fileID: 2100000, guid: 3cf5d93e63ceca94da9ffb40a6ed68ed, type: 2}
+--- !u!114 &1879810088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879810085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4431be673ad2634da2763a2b807d7c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedLevel: 3
 --- !u!1 &1886657676
 GameObject:
   m_ObjectHideFlags: 0
