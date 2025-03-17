@@ -12,6 +12,8 @@ TagManager:
   - InstantiateButton
   - AlignButton
   - FlyLandButton
+  - CenterDot
+  - DebugAutoPlaceButton
   layers:
   - Default
   - TransparentFX
