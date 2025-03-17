@@ -9,27 +9,22 @@ using UnityEngine.UIElements;
 public class DragonController : MonoBehaviour
 {
     IADragon IADragon;
-    Joystick joystick;
     Rigidbody rb;
     Animator animator;
     int DirectionHash;
     int TakeOffHash;
     bool InAir;
     Vector3 AntiGravitationalForce;
-    GameObject UpArrow;
-    GameObject DownArrow;
-    TMP_Text Text;
-    GameObject TextObject;
     [SerializeField] float MAX_SPEED = 10f;
     [SerializeField] float FLIGHT_SPEED_MULTIPLIYER = 8f;
     [SerializeField] float GROUND_ACCELERATION = 15f;
     [SerializeField] float FLIGHT_ACCELERATION_MULTIPLIYER = 5f;
     [SerializeField] float ANTIGRAVITY_MULTIPLIER = 1.05f;
-
-
-
+    Joystick joystick;
     public Vector3 PureHorizontalVelocity;
-    private void Awake()
+
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -37,20 +32,7 @@ public class DragonController : MonoBehaviour
         TakeOffHash = Animator.StringToHash("TakeOff");
         IADragon = new IADragon();
         AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0);
-       
-
-
-    }
-
-    private void Start()
-    {
-        GameObject joystickGameObject = GameObject.FindWithTag("Joystick");
-        joystick = joystickGameObject.GetComponent<Joystick>();
-        UpArrow = GameObject.FindWithTag("UpArrow");
-        DownArrow = GameObject.FindWithTag("DownArrow");
-        TextObject = GameObject.FindWithTag("FlyText");
-        Text = TextObject.GetComponent<TMP_Text>();
-
+        joystick = DragonUI.Instance.Joystick;
     }
 
     private void FixedUpdate()
@@ -86,9 +68,7 @@ public class DragonController : MonoBehaviour
             MAX_SPEED = MAX_SPEED * FLIGHT_SPEED_MULTIPLIYER;
             GROUND_ACCELERATION = GROUND_ACCELERATION * FLIGHT_ACCELERATION_MULTIPLIYER;
             rb.linearDamping = 1.0f;
-            UpArrow.gameObject.SetActive(true);
-            DownArrow.gameObject.SetActive(true);
-            Text.text = "LAND";
+            DragonUI.Instance.DragonFly(true);
         }
     }
 
@@ -98,9 +78,7 @@ public class DragonController : MonoBehaviour
         MAX_SPEED = MAX_SPEED / FLIGHT_SPEED_MULTIPLIYER;
         GROUND_ACCELERATION = GROUND_ACCELERATION / FLIGHT_ACCELERATION_MULTIPLIYER;
         rb.linearDamping = 0;
-        UpArrow.gameObject.SetActive(false);
-        DownArrow.gameObject.SetActive(false);
-        Text.text = "FLY";
+        DragonUI.Instance.DragonFly(false);
 
 
     }

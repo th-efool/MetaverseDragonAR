@@ -21,12 +21,6 @@ public class ARPlacementManager : MonoBehaviour
     bool DragonAligned =false;
     bool DragonInstantiated = false;
     GameObject Dragon;
-    GameObject InstantiateButton;
-    GameObject AlignButton;
-    GameObject Joystick;
-    GameObject FlyButton;
-    GameObject UpArrow;
-    GameObject DownArrow;
 
     [Header("Test Variables Shit")]
     [SerializeField] GameObject SpawnTransform;
@@ -34,22 +28,10 @@ public class ARPlacementManager : MonoBehaviour
     private void Awake()
     {
         m_RaycastManager = GetComponent<ARRaycastManager>();
-        InstantiateButton = GameObject.FindWithTag("InstantiateButton");
-        AlignButton = GameObject.FindWithTag("AlignButton");
-        AlignButton.SetActive(false);
-        Joystick = GameObject.FindWithTag("Joystick");
-        FlyButton = GameObject.FindWithTag("FlyLandButton");
-        UpArrow = GameObject.FindWithTag("UpArrow");
-        DownArrow = GameObject.FindWithTag("DownArrow");
-        Joystick.SetActive(false);
-        FlyButton.SetActive(true);
         IAARInteraction = new IAARInteraction();
-       IAARInteraction.ARPlacement.PlaceDragon.started += ctx => InstantiateDragon(ctx,0);
+        IAARInteraction.ARPlacement.PlaceDragon.started += ctx => InstantiateDragon(ctx,0);
         IAARInteraction.ARPlacement.AlignmentDone.started += FinalizeAlignment;
         IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => DebugSpawnAlign(ctx, 0);
-        UpArrow.gameObject.SetActive(false);
-        DownArrow.gameObject.SetActive(false);
-        DebugSpawnAlign(0);
 
 
     }
@@ -58,7 +40,10 @@ public class ARPlacementManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        DragonUI.Instance.DragonPlacementStage(0);
         centerOfScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        DebugSpawnAlign(0);
+
     }
 
     // Update is called once per frame
@@ -91,9 +76,7 @@ public class ARPlacementManager : MonoBehaviour
                     Pose hitPose = m_Hits[0].pose;
                     Dragon = Instantiate(dragonPrefabs[index], hitPose.position, Quaternion.identity);
                     DragonInstantiated = true;
-                    AlignButton.SetActive(true);
-                    InstantiateButton.SetActive(false);
-
+                    DragonUI.Instance.DragonPlacementStage(1);
                 }
 
         }
@@ -101,9 +84,7 @@ public class ARPlacementManager : MonoBehaviour
     void FinalizeAlignment(InputAction.CallbackContext ctx)
     {
         DragonAligned = true;
-        AlignButton.SetActive(false);
-        Joystick.SetActive(true);
-        FlyButton.SetActive(true);
+        DragonUI.Instance.DragonPlacementStage(2);
 
     }
 
@@ -113,10 +94,7 @@ public class ARPlacementManager : MonoBehaviour
         Dragon = Instantiate(dragonPrefabs[index], SpawnTransform.transform.position, Quaternion.identity);
         DragonInstantiated = true;
         DragonAligned = true;
-        InstantiateButton.SetActive(false);
-        AlignButton.SetActive(false);
-        Joystick.SetActive(true);
-        FlyButton.SetActive(true);
+        DragonUI.Instance.DragonPlacementStage(2);
     }
 
     void DebugSpawnAlign(int index)
@@ -125,10 +103,7 @@ public class ARPlacementManager : MonoBehaviour
         Dragon = Instantiate(dragonPrefabs[index], SpawnTransform.transform.position, Quaternion.identity);
         DragonInstantiated = true;
         DragonAligned = true;
-        InstantiateButton.SetActive(false);
-        AlignButton.SetActive(false);
-        Joystick.SetActive(true);
-        FlyButton.SetActive(true);
+        DragonUI.Instance.DragonPlacementStage(2);
     }
 }
 
