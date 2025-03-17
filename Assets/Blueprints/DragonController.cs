@@ -15,6 +15,7 @@ public class DragonController : MonoBehaviour
     int TakeOffHash;
     bool InAir;
     Vector3 AntiGravitationalForce;
+    [SerializeField] GameObject Flamethrower;
     [SerializeField] float MAX_SPEED = 10f;
     [SerializeField] float FLIGHT_SPEED_MULTIPLIYER = 8f;
     [SerializeField] float GROUND_ACCELERATION = 15f;
@@ -33,6 +34,7 @@ public class DragonController : MonoBehaviour
         IADragon = new IADragon();
         AntiGravitationalForce = new Vector3(0, (float)(-Physics.gravity.y), 0);
         joystick = DragonUI.Instance.Joystick;
+        FlameThrowerEnable(false);
     }
 
     private void FixedUpdate()
@@ -47,7 +49,6 @@ public class DragonController : MonoBehaviour
         }
         if (InAir) { StayAfloat(); }
         animator.SetFloat(DirectionHash, (PureHorizontalVelocity.magnitude) / MAX_SPEED);
-
     }
 
     private void OnEnable()
@@ -68,12 +69,17 @@ public class DragonController : MonoBehaviour
 
     }
 
+    void FlameThrowerEnable(bool enable)
+    {if (enable) { Flamethrower.gameObject.SetActive(true); } else { Flamethrower.gameObject.SetActive(false); }
+    }
 
     void TakeFlight(InputAction.CallbackContext callbackContext)
     {
-        if (InAir) { ExitFlight(); }
+        if (InAir) { ExitFlight(); FlameThrowerEnable(false);
+        }
         else
         {
+            FlameThrowerEnable(true);
             InAir = true; animator.SetBool(TakeOffHash, true);
             MAX_SPEED = MAX_SPEED * FLIGHT_SPEED_MULTIPLIYER;
             GROUND_ACCELERATION = GROUND_ACCELERATION * FLIGHT_ACCELERATION_MULTIPLIYER;

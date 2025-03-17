@@ -5,9 +5,9 @@ using System.Drawing;
 
 public class PlayerData : Singleton<PlayerData>
 {
-    public string PlayerName { get; set; }
-    public DragonType DragonChoice { get; private set; }
-    public int DragonColorChoice { get; private set; }
+    public string PlayerName { get; set; } = "Zeipher";
+    public DragonType DragonChoice { get; private set; } = DragonType.Usurper;
+    public int DragonColorChoice { get; private set; } = 2;
     Material[] Usurper;
     Material[] SoulEater;
     Material[] Nightmare;
