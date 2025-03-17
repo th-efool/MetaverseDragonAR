@@ -101,5 +101,10 @@ public class ARPlacementManager : MonoBehaviour
         IAARInteraction.Enable();
     }
 
+    private void OnDisable()
+    {
+        IAARInteraction.Disable();
+    }
+
 }
 

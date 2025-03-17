@@ -3,18 +3,18 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Threading;
 
-public class SceneLoader : Singleton<SceneLoader>
+public class CustomSceneLoader : Singleton<CustomSceneLoader>
 {
     public void LoadScene(LevelList Level)
     {
-        SceneManager.LoadSceneAsync("LoadingScene");
+        SceneManager.LoadSceneAsync("LoadingScene",LoadSceneMode.Single);
         StartCoroutine(AsyncLoad(Level));
     }
 
     IEnumerator AsyncLoad(LevelList Level)
     {
         string SceneName = Level.ToString();
-        var AsyncLoadedScene = SceneManager.LoadSceneAsync(SceneName);
+        var AsyncLoadedScene = SceneManager.LoadSceneAsync(SceneName,LoadSceneMode.Single);
 
         AsyncLoadedScene.allowSceneActivation = false;
 

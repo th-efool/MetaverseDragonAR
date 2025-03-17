@@ -59,6 +59,15 @@ public class DragonController : MonoBehaviour
         IADragon.Locomotion.FlyUpDown.canceled += AltitudeChange;
 
     }
+    private void OnDisable()
+    {
+        IADragon.Disable();
+        IADragon.Locomotion.Fly.started -= TakeFlight;
+        IADragon.Locomotion.FlyUpDown.performed -= AltitudeChange;
+        IADragon.Locomotion.FlyUpDown.canceled -= AltitudeChange;
+
+    }
+
 
     void TakeFlight(InputAction.CallbackContext callbackContext)
     {

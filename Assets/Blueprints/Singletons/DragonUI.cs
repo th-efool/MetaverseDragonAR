@@ -83,7 +83,10 @@ public class DragonUI : Singleton<DragonUI>
             DownArrow.gameObject.SetActive(false);
             Text.text = "FLY";
         }
+
     }
 
-    
 }
+
+    
+
