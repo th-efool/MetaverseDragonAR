@@ -24,7 +24,7 @@ public class DragonController : MonoBehaviour
     public Vector3 PureHorizontalVelocity;
 
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -52,6 +52,7 @@ public class DragonController : MonoBehaviour
 
     private void OnEnable()
     {
+
         IADragon.Enable();
         IADragon.Locomotion.Fly.started += TakeFlight;
         IADragon.Locomotion.FlyUpDown.performed += AltitudeChange;
