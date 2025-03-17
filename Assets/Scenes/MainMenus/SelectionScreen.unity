@@ -119,10 +119,10 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &88813935 stripped
+--- !u!1 &96624476 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 163610, guid: 281a986484325de459dc1b3709335bc5, type: 3}
-  m_PrefabInstance: {fileID: 2069874945}
+  m_CorrespondingSourceObject: {fileID: 194904, guid: 445a5c29e7f715947b713a753f242af0, type: 3}
+  m_PrefabInstance: {fileID: 520691676}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &119961521
 GameObject:
@@ -835,9 +835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e274663c045f0243aba549b2aae28a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &868362908 stripped
+--- !u!1 &924052374 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 114264, guid: 8e302007cba46d94b970c6a0955b9628, type: 3}
+  m_CorrespondingSourceObject: {fileID: 109776, guid: 8e302007cba46d94b970c6a0955b9628, type: 3}
   m_PrefabInstance: {fileID: 934094932}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &934094932
@@ -1029,11 +1029,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081561630}
   m_CullTransparentMesh: 1
---- !u!1 &1108739619 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 189770, guid: c644a2181ac22e740968a7ece97e8f36, type: 3}
-  m_PrefabInstance: {fileID: 2027970469}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1257290602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480080, guid: 445a5c29e7f715947b713a753f242af0, type: 3}
@@ -1513,6 +1508,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628955646}
   m_CullTransparentMesh: 1
+--- !u!1 &1683536430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 168864, guid: 281a986484325de459dc1b3709335bc5, type: 3}
+  m_PrefabInstance: {fileID: 2069874945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1702969678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1821,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: 10, z: 10}
+--- !u!1 &1869261398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 130964, guid: c644a2181ac22e740968a7ece97e8f36, type: 3}
+  m_PrefabInstance: {fileID: 2027970469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1879810085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,10 +1876,11 @@ MonoBehaviour:
   ColorV3: {fileID: 1834014909}
   ColorV4: {fileID: 1081561630}
   Select: {fileID: 119961521}
-  DragonUsurper: {fileID: 780749063}
-  DragonSoulEater: {fileID: 1108739619}
-  DragonNightmare: {fileID: 88813935}
-  DragonTerrorBringer: {fileID: 868362908}
+  DragonsRef:
+  - {fileID: 96624476}
+  - {fileID: 1869261398}
+  - {fileID: 1683536430}
+  - {fileID: 924052374}
   Usurper:
   - {fileID: 2100000, guid: b610c12dfb915564fa7d6ed9771555e3, type: 2}
   - {fileID: 2100000, guid: acd197acde96c544b8d8fd85cc2e8b20, type: 2}

@@ -47,9 +47,12 @@ public class PlayerData : Singleton<PlayerData>
     public void SetDragonColorChoice(int Choice)
     {
         DragonColorChoice = Choice;
-        Debug.Log("YO YO BABBY WHASAUPP " + Choice);
     }
 
+    public void ChangeMaterialBasedOnChoice(GameObject[] DragonsRef)
+    {
+        DragonsRef[(int)DragonChoice].GetComponentInChildren<SkinnedMeshRenderer>().material = SelectedDragonMaterial();
+    }
 
     protected override void Awake()
     {

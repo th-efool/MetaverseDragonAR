@@ -29,10 +29,10 @@ public class ARPlacementManager : MonoBehaviour
     {
         m_RaycastManager = GetComponent<ARRaycastManager>();
         IAARInteraction = new IAARInteraction();
-        IAARInteraction.ARPlacement.PlaceDragon.started += ctx => InstantiateDragon(ctx,0);
+        IAARInteraction.ARPlacement.PlaceDragon.started += ctx => InstantiateDragon(ctx,(int)PlayerData.Instance.DragonChoice);
         IAARInteraction.ARPlacement.AlignmentDone.started += FinalizeAlignment;
         IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => Debug.Log("Meow Meow YAYYY!!~");
-        IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => DebugSpawnAlign(ctx, 0);
+        IAARInteraction.ARPlacement.AutoSpawnAlign.started += ctx => DebugSpawnAlign(ctx, (int)PlayerData.Instance.DragonChoice);
 
 
     }
@@ -90,7 +90,8 @@ public class ARPlacementManager : MonoBehaviour
     void DebugSpawnAlign(InputAction.CallbackContext ctx, int index)
     {
         Debug.Log("I was called from ARPlacementManger - DebugSpawnAligh");
-        Dragon = Instantiate(dragonPrefabs[index], SpawnTransform.transform.position, Quaternion.identity);
+        PlayerData.Instance.ChangeMaterialBasedOnChoice(dragonPrefabs);
+        Dragon = Instantiate(dragonPrefabs[(int)PlayerData.Instance.DragonChoice], SpawnTransform.transform.position, Quaternion.identity);
         DragonInstantiated = true;
         DragonAligned = true;
         DragonUI.Instance.DragonPlacementStage(2);

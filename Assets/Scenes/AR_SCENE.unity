@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 7707133967751999550, guid: 9e87f7a502df2d4428eb915ff021f580, type: 3}
       propertyPath: 'dragonPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 3932735097534347944, guid: 1237dd7aea434bf47b26d9e2b25393e6, type: 3}
+      objectReference: {fileID: 5697223172573233277, guid: bb41b7737ce2d6940b97e47bc443884b, type: 3}
     - target: {fileID: 7707133967751999550, guid: 9e87f7a502df2d4428eb915ff021f580, type: 3}
       propertyPath: 'dragonPrefabs.Array.data[2]'
       value: 
@@ -694,7 +694,7 @@ PrefabInstance:
     - target: {fileID: 7707133967751999550, guid: 9e87f7a502df2d4428eb915ff021f580, type: 3}
       propertyPath: 'dragonPrefabs.Array.data[3]'
       value: 
-      objectReference: {fileID: 3932735097534347944, guid: 1237dd7aea434bf47b26d9e2b25393e6, type: 3}
+      objectReference: {fileID: 6350540741703186418, guid: 331bd9fa9c67e734abb5997df194d482, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

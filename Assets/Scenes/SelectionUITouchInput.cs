@@ -25,25 +25,8 @@ public class SelectionUITouchInput : MonoBehaviour
     public void SetDragonColorChoice(int choice)
     {
         PlayerData.Instance.SetDragonColorChoice(choice);
-        DragonsRef[(int)PlayerData.Instance.DragonChoice].GetComponentInChildren<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
-
-        /*
-        switch (PlayerData.Instance.DragonChoice)
-        {
-            case DragonType.Usurper:
-                break;
-
-            case DragonType.SoulEater:
-                DragonSoulEater.GetComponent<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
-                break;
-
-            case DragonType.Nightmare:
-                DragonNightmare.GetComponent<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
-                break;
-            case DragonType.TerrorBringer:
-                DragonTerrorBringer.GetComponent<SkinnedMeshRenderer>().material = PlayerData.Instance.SelectedDragonMaterial();
-                break;
-        */
+        PlayerData.Instance.ChangeMaterialBasedOnChoice(DragonsRef);
+        
     }
 }
 
