@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.Composites;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.UIElements;
+using System.Collections;
 
 public class DragonController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class DragonController : MonoBehaviour
     [SerializeField] GameObject Projectile;
     [SerializeField] Transform ProjectileStartPoint;
     [SerializeField] float ProjectileSpeed= 250f;
+    bool flamethrowerOn;
 
 
     private void Awake()
@@ -59,7 +61,6 @@ public class DragonController : MonoBehaviour
 
         IADragon.Enable();
         IADragon.Locomotion.Fly.started += TakeFlight;
-        IADragon.Locomotion.Fly.started += ShootProjectile;
         IADragon.Locomotion.FlyUpDown.performed += AltitudeChange;
         IADragon.Locomotion.FlyUpDown.canceled += AltitudeChange;
 
@@ -79,11 +80,10 @@ public class DragonController : MonoBehaviour
 
     void TakeFlight(InputAction.CallbackContext callbackContext)
     {
-        if (InAir) { ExitFlight(); FlameThrowerEnable(false);
+        if (InAir) { ExitFlight(); 
         }
         else
         {
-            FlameThrowerEnable(true);
             InAir = true; animator.SetBool(TakeOffHash, true);
             MAX_SPEED = MAX_SPEED * FLIGHT_SPEED_MULTIPLIYER;
             GROUND_ACCELERATION = GROUND_ACCELERATION * FLIGHT_ACCELERATION_MULTIPLIYER;
@@ -121,7 +121,7 @@ public class DragonController : MonoBehaviour
         }
     }
 
-    void ShootProjectile(InputAction.CallbackContext callbackContext)
+    void ShootProjectile(InputAction.CallbackContext ctx)
     {
         //Raycast to get the destination point
         
@@ -139,6 +139,21 @@ public class DragonController : MonoBehaviour
         GameObject projectile = Instantiate(Projectile, ProjectileStartPoint.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody>().linearVelocity = ((destination - ProjectileStartPoint.position).normalized*ProjectileSpeed);
 
+
+    }
+
+    void OnOffFlameThrower(InputAction.CallbackContext ctx)
+    {
+        if (flamethrowerOn) { StartCoroutine(FlameThrowerAttack()); }
+    }
+
+    IEnumerator FlameThrowerAttack()
+    {
+        FlameThrowerEnable(true);
+        flamethrowerOn = true;
+        yield return new WaitForSeconds(3);
+        FlameThrowerEnable(false);
+        flamethrowerOn = false;
 
     }
 }
