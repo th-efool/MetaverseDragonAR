@@ -14,6 +14,8 @@ public class DragonUI : Singleton<DragonUI>
     TMP_Text Text;
     GameObject CenterDot;
     GameObject DebugAutoPlaceButton;
+    GameObject FlameThrowerButton;
+    GameObject FireballButton;
     public Joystick Joystick { get; private set; }
 
 
@@ -34,6 +36,8 @@ public class DragonUI : Singleton<DragonUI>
         DragonPlacementStage(0);
         CenterDot= GameObject.FindWithTag("CenterDot");
         DebugAutoPlaceButton = GameObject.FindWithTag("DebugAutoPlaceButton");
+        FlameThrowerButton = GameObject.FindWithTag("FlameThrowerButton");
+        FireballButton = GameObject.FindWithTag("FireballButton");
 
     }
 
@@ -84,6 +88,11 @@ public class DragonUI : Singleton<DragonUI>
             Text.text = "FLY";
         }
 
+    }
+
+    public void FlameThrowerUI(bool on)
+    {
+        //FlameThrowerButton.GetComponent<Button>().interactible = on;
     }
 
 }

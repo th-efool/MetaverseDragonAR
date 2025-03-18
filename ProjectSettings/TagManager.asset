@@ -18,6 +18,8 @@ TagManager:
   - ColorV2
   - ColorV3
   - ColorV4
+  - FlameThrowerButton
+  - FireballButton
   layers:
   - Default
   - TransparentFX

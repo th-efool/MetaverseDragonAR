@@ -63,6 +63,9 @@ public class DragonController : MonoBehaviour
         IADragon.Locomotion.Fly.started += TakeFlight;
         IADragon.Locomotion.FlyUpDown.performed += AltitudeChange;
         IADragon.Locomotion.FlyUpDown.canceled += AltitudeChange;
+        IADragon.Locomotion.FlameBreath.started += FlameThrowerAttack;
+        IADragon.Locomotion.Fireball.started += ShootProjectile;
+
 
     }
     private void OnDisable()
@@ -71,6 +74,9 @@ public class DragonController : MonoBehaviour
         IADragon.Locomotion.Fly.started -= TakeFlight;
         IADragon.Locomotion.FlyUpDown.performed -= AltitudeChange;
         IADragon.Locomotion.FlyUpDown.canceled -= AltitudeChange;
+        IADragon.Locomotion.FlameBreath.started -= FlameThrowerAttack;
+        IADragon.Locomotion.Fireball.started -= ShootProjectile;
+
 
     }
 
@@ -142,7 +148,7 @@ public class DragonController : MonoBehaviour
 
     }
 
-    void OnOffFlameThrower(InputAction.CallbackContext ctx)
+    void FlameThrowerAttack(InputAction.CallbackContext ctx)
     {
         if (flamethrowerOn) { StartCoroutine(FlameThrowerAttack()); }
     }
@@ -151,9 +157,12 @@ public class DragonController : MonoBehaviour
     {
         FlameThrowerEnable(true);
         flamethrowerOn = true;
+        DragonUI.Instance.FlameThrowerUI(false);
         yield return new WaitForSeconds(3);
         FlameThrowerEnable(false);
         flamethrowerOn = false;
+        DragonUI.Instance.FlameThrowerUI(true);
+
 
     }
 }
