@@ -276,11 +276,6 @@ private void SetColorPalette(DragonType dragontype)
 - **Resource Loading**: Dragons are instantiated only when needed
 - **Reference Caching**: UI elements are cached at startup to avoid expensive `GameObject.Find` calls
 
-### AR Optimization
-
-- **Raycast Efficiency**: Uses screen center for continuous placement rather than processing touch input
-- **Placement States**: Three-stage placement process (place, align, finalize) to minimize AR processing
-
 ### Mobile-Specific Optimizations
 
 - **Touch Controls**: Custom joystick implementation for smooth mobile control
