@@ -1721,7 +1721,7 @@ MonoBehaviour:
   PureHorizontalVelocity: {x: 0, y: 0, z: 0}
   Projectile: {fileID: 6802126260167318971, guid: ebfce7ffe1ca5804ea28c63fb64e0ef7, type: 3}
   ProjectileStartPoint: {fileID: 2112006879229479362}
-  ProjectileSpeed: 10
+  ProjectileSpeed: 250
 --- !u!1 &5799798679509502393
 GameObject:
   m_ObjectHideFlags: 0

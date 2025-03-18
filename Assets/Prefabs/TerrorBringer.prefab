@@ -468,7 +468,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dcc7344671ccf0044a1fb5038007860e, type: 2}
+  - {fileID: 2100000, guid: 63a8442de5af83f49902935ef0d8904e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7503d42db7dde84199ea573bb29b661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flamethrower: {fileID: 0}
+  Flamethrower: {fileID: 4129912534779167456}
   MAX_SPEED: 4.5
   FLIGHT_SPEED_MULTIPLIYER: 1.4
   GROUND_ACCELERATION: 3.5
@@ -2086,8 +2086,8 @@ MonoBehaviour:
   ANTIGRAVITY_MULTIPLIER: 1.35
   PureHorizontalVelocity: {x: 0, y: 0, z: 0}
   Projectile: {fileID: 6802126260167318971, guid: 7ebae625a96c6544d8699c4148a6c8e4, type: 3}
-  ProjectileStartPoint: {fileID: 0}
-  ProjectileSpeed: 10
+  ProjectileStartPoint: {fileID: 5864415834057903414}
+  ProjectileSpeed: 250
 --- !u!1 &6591913188128879499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,6 +3049,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e908aca8e9f71e4f9acdf9546f5b747, type: 3}
+--- !u!1 &4129912534779167456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6601428963936259383, guid: 8e908aca8e9f71e4f9acdf9546f5b747, type: 3}
+  m_PrefabInstance: {fileID: 7119233589674725335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8170522594215256523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1418385640358653468, guid: 8e908aca8e9f71e4f9acdf9546f5b747, type: 3}
