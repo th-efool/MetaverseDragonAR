@@ -29,5 +29,7 @@ The dragon selection scene contains four dragon prefabs that randomly play anima
 2. Rotates the parent object holding 4 dragon (with an slerp function) in scene so the dragon at 90* Clockwise, Anticlockwise is shown.
 3. Updates the color pallete that is available for that dragon (based on available textures) - `PlayerData` singleton is responsible for proving the problem pallete for the CurrentDragon.
 
- Upon selecting an skin color from palete, an function in `PlayerData`
- is called in which we pass array of dragon prefabs that are relevant to that scene, the method in `PlayerData` that will update the skin by accessing the skinmeshrenderer component and setting material
+ Upon selecting an skin color from palete, an method in `PlayerData` (singelton)
+ which take dragon prefabs as input and updates the skin by accessing the skinmeshrenderer component and setting material through that.
+
+ # Rest of documatation Work In Progress 
