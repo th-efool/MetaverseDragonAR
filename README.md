@@ -1,6 +1,6 @@
-Throughout the project, my aim has been to make the project as easy to expand as it can - extra scenes, extra dragons, extra skins, more sound effects for same thing.
 
-i have attempted to build different systems and organize logic in dpecific way to acheive that goal
+# Design Philosophy
+Throughout the project, my aim has been to make the codebase as extensible as possible - supporting additional scenes,dragon types, skins, and sound effects with minimal changes to existing code. That's why i have implemented various systems and organizational structures to achieve this goal.
 
 # Core Systems Overview
 ## Player Data Storage
