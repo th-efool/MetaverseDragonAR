@@ -24,7 +24,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 ```
 
 **Design Decisions:**
-- **Thread-Safe Access**: Uses lock mechanism to prevent race conditions
 - **Configurable Persistence**: Toggle for DontDestroyOnLoad behavior
 - **Controlled Re-instantiation**: Option to allow singleton recreation after destruction
 - **Safe Shutdown Handling**: Prevents access to destroyed instances
