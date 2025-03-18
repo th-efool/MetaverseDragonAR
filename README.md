@@ -1,3 +1,7 @@
+Throughout the project, my aim has been to make the project as easy to expand as it can - extra scenes, extra dragons, extra skins, more sound effects for same thing.
+
+i have attempted to build different systems and organize logic in dpecific way to acheive that goal
+
 # Core Systems Overview
 ## Player Data Storage
 An singleton script runs in background in which variables such as `PlayerName` `DragonChoice`  `DragonColorChoice` are stored and updated using getters and setters. 
