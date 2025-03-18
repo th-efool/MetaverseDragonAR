@@ -20,6 +20,7 @@ TagManager:
   - ColorV4
   - FlameThrowerButton
   - FireballButton
+  - LoadingProgressText
   layers:
   - Default
   - TransparentFX
