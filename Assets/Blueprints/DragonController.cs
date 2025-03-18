@@ -150,7 +150,7 @@ public class DragonController : MonoBehaviour
 
     void FlameThrowerAttack(InputAction.CallbackContext ctx)
     {
-        if (flamethrowerOn) { StartCoroutine(FlameThrowerAttack()); }
+        if (!flamethrowerOn) { StartCoroutine(FlameThrowerAttack()); }
     }
 
     IEnumerator FlameThrowerAttack()

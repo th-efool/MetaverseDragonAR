@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class DragonUI : Singleton<DragonUI>
 {
@@ -92,7 +94,7 @@ public class DragonUI : Singleton<DragonUI>
 
     public void FlameThrowerUI(bool on)
     {
-        //FlameThrowerButton.GetComponent<Button>().interactible = on;
+        FlameThrowerButton.GetComponent<Button>().interactable = on;
     }
 
 }
