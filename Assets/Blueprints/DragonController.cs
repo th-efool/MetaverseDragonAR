@@ -23,6 +23,9 @@ public class DragonController : MonoBehaviour
     [SerializeField] float ANTIGRAVITY_MULTIPLIER = 1.05f;
     Joystick joystick;
     public Vector3 PureHorizontalVelocity;
+    [SerializeField] GameObject Projectile;
+    [SerializeField] Transform ProjectileStartPoint;
+    [SerializeField] float ProjectileSpeed= 250f;
 
 
     private void Awake()
@@ -56,6 +59,7 @@ public class DragonController : MonoBehaviour
 
         IADragon.Enable();
         IADragon.Locomotion.Fly.started += TakeFlight;
+        IADragon.Locomotion.Fly.started += ShootProjectile;
         IADragon.Locomotion.FlyUpDown.performed += AltitudeChange;
         IADragon.Locomotion.FlyUpDown.canceled += AltitudeChange;
 
@@ -115,6 +119,27 @@ public class DragonController : MonoBehaviour
             Debug.Log("DOWN IS THE WAY");
 
         }
+    }
+
+    void ShootProjectile(InputAction.CallbackContext callbackContext)
+    {
+        //Raycast to get the destination point
+        
+        Vector3 destination;
+        Ray ray = new Ray(ProjectileStartPoint.position, transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            destination = hitInfo.point;
+        } else
+        {
+            destination = ray.GetPoint(400);
+        }
+
+        //Instantiate Projectile
+        GameObject projectile = Instantiate(Projectile, ProjectileStartPoint.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().linearVelocity = ((destination - ProjectileStartPoint.position).normalized*ProjectileSpeed);
+
+
     }
 }
 

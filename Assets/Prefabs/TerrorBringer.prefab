@@ -2085,6 +2085,9 @@ MonoBehaviour:
   FLIGHT_ACCELERATION_MULTIPLIYER: 1.4
   ANTIGRAVITY_MULTIPLIER: 1.35
   PureHorizontalVelocity: {x: 0, y: 0, z: 0}
+  Projectile: {fileID: 6802126260167318971, guid: 7ebae625a96c6544d8699c4148a6c8e4, type: 3}
+  ProjectileStartPoint: {fileID: 0}
+  ProjectileSpeed: 10
 --- !u!1 &6591913188128879499
 GameObject:
   m_ObjectHideFlags: 0

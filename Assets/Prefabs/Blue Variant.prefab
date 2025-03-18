@@ -405,7 +405,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c6a1d1f1e0ac339489c17274f110669a, type: 2}
+  - {fileID: 2100000, guid: 1131ac1e42ee4884ab91bd69310a2715, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1772,6 +1772,9 @@ MonoBehaviour:
   FLIGHT_ACCELERATION_MULTIPLIYER: 1.25
   ANTIGRAVITY_MULTIPLIER: 1.3
   PureHorizontalVelocity: {x: 0, y: 0, z: 0}
+  Projectile: {fileID: 6802126260167318971, guid: f4b8cac1b4f7a6d4080dd35196266f70, type: 3}
+  ProjectileStartPoint: {fileID: 4543717687637693946}
+  ProjectileSpeed: 250
 --- !u!1 &3996925008011735332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,6 +2746,7 @@ Transform:
   - {fileID: 49085721809241845}
   - {fileID: 5776478647860503890}
   - {fileID: 6364446600913739538}
+  - {fileID: 4543717687637693946}
   - {fileID: 915080538027324491}
   m_Father: {fileID: 344067774613460033}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3281,6 +3285,37 @@ Transform:
   - {fileID: 1744777156613292794}
   m_Father: {fileID: 4838061048703415619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7317670979375874522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4543717687637693946}
+  m_Layer: 0
+  m_Name: ProjectileSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4543717687637693946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317670979375874522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.081013784, y: 0.70245045, z: 0.08101202, w: 0.7024509}
+  m_LocalPosition: {x: -0, y: -40, z: 185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7659091674790810328}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 13.158}
 --- !u!1 &7324565591287920772
 GameObject:
   m_ObjectHideFlags: 0
